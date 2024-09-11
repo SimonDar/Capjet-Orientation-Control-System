@@ -39,7 +39,7 @@ For testing purposes, manual input controls are provided to simulate gyroscope r
 
 The following image shows the LabVIEW Front Panel for controlling the system:
 
-<img src="./img/labViewPanel.png" alt="labViewPanel" width="400"/>
+<img src="./img/labViewPanel.png" alt="labViewPanel" width="550"/>
 
 ### Controls
 
@@ -63,7 +63,7 @@ The following image shows the LabVIEW Front Panel for controlling the system:
 
 The following image shows the Block Diagram in LabVIEW for the system's logic:
 
-<img src="./img/labViewBlockDiagram.png" alt="labViewBlockDiagram" width="400"/>
+<img src="./img/labViewBlockDiagram.png" alt="labViewBlockDiagram" width="550"/>
 
 ### Input Processing
 
