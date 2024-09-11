@@ -8,7 +8,7 @@ The **Capjet-Orientation-Control-System** is designed to maintain the orientatio
 
 The following flowchart illustrates the logical flow of the **Capjet-Orientation-Control-System**:
 
-![Flowchart](/img/Screenshot_2024-09-10_at_21.26.56.png)
+![Flowchart](./img/labView.png)
 
 1. The system starts by checking the gyroscope for any rotational movement.
 2. If the detected orientation is within an acceptable range (based on the **Tolerance Level**), no action is taken.
@@ -66,7 +66,7 @@ The following image shows the LabVIEW Front Panel for controlling the system:
 
 The following image shows the Block Diagram in LabVIEW for the system's logic:
 
-![LabVIEW Block Diagram](/img/Screenshot_2024-09-11_at_09.48.22.png)
+![LabVIEW Block Diagram](/img/FlowChart.png)
 
 ### Input Processing
 
