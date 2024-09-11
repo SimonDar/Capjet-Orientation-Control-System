@@ -8,7 +8,7 @@ The **Capjet-Orientation-Control-System** is designed to maintain the orientatio
 
 The following flowchart illustrates the logical flow of the **Capjet-Orientation-Control-System**:
 
-![Flowchart](./img/labView.png)
+![Flowchart](./img/FlowChart.png)
 
 1. The system starts by checking the gyroscope for any rotational movement.
 2. If the detected orientation is within an acceptable range (based on the **Tolerance Level**), no action is taken.
@@ -34,17 +34,11 @@ For testing purposes, manual input controls are provided to simulate gyroscope r
 
 ---
 
-## Purpose
-
-The purpose of the **Capjet-Orientation-Control-System** is to ensure that the ROV remains in a fixed, stable position underwater when the system is activated. This is crucial for tasks such as underwater inspections, sampling, or tool deployment, where precise positioning is essential. The system uses thruster control to compensate for any rotational drift, allowing the ROV to stay level and oriented correctly even in changing underwater conditions.
-
----
-
 ## Front Panel Elements
 
 The following image shows the LabVIEW Front Panel for controlling the system:
 
-![LabVIEW Front Panel](/img/Screenshot_2024-09-11_at_09.48.36.png)
+![LabVIEW Front Panel](/img/labViewPanel.png)
 
 ### Controls
 
@@ -66,7 +60,7 @@ The following image shows the LabVIEW Front Panel for controlling the system:
 
 The following image shows the Block Diagram in LabVIEW for the system's logic:
 
-![LabVIEW Block Diagram](/img/FlowChart.png)
+![LabVIEW Block Diagram](/img/labViewBlockDiagram.png)
 
 ### Input Processing
 
@@ -88,9 +82,3 @@ The following image shows the Block Diagram in LabVIEW for the system's logic:
 ### Stop Logic
 
 - The **Stop Button** allows the operator to manually stop the system at any time. It is connected to the control logic via a Boolean OR gate, ensuring that the system stops either when the manual stop is activated or when an out-of-bounds condition occurs.
-
----
-
-## Purpose in Underwater Operations
-
-In an underwater environment, maintaining a stable orientation is crucial for the ROV to perform precise tasks such as inspection, tool manipulation, or sampling. The **Capjet-Orientation-Control-System** ensures that the ROV can hold its position against underwater currents and other external disturbances. This system dynamically adjusts the thrusters in real-time based on gyroscopic feedback, keeping the ROV steady without requiring constant manual control.
