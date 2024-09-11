@@ -23,14 +23,24 @@ The following flowchart illustrates the logical flow of the **Capjet-Orientation
 
 - **Gyroscope Rotations**: The inputs represent the rotational speed of the system in **degrees per second** using two axes of rotation:
   - **RightLeft/Y Rotation**: Monitors the rotation along the Y-axis (left to right movement of the ROV).
-  - **FrontBack/X Rotation**: Monitors the rotation along the X-axis (front to back movement of the ROV).
+  - **FrontBack/X Rotation**: Monitors the rotation along the X-axis (back to front movement of the ROV).
 
 For testing purposes, manual input controls are provided to simulate gyroscope readings for the X (FrontBack) and Y (RightLeft) axes. This allows the operator to observe how the system responds under various rotation speeds without requiring an actual gyroscope.
 
+## Outputs
+
+- **Thruster Signals**: The outputs consist of four signals, each controlling one of the ROV's thrusters:
+  - **Front Left Thruster**: The output signal that adjusts the power applied to the front-left thruster.
+  - **Front Right Thruster**: The output signal that controls the front-right thruster.
+  - **Back Left Thruster**: The output signal for the back-left thruster.
+  - **Back Right Thruster**: The output signal for the back-right thruster.
+
+These signals are represented by the Thruster Gauges on the front panel, displaying real-time adjustments based on the rotational feedback from the gyroscope. The outputs can be connected directly to the respective thrusters, providing precise corrective actions to maintain the ROV's stability.
+
 ### Threshold Parameters
 
-- **Tolerance Level**: This parameter represents the natural noise in the underwater environment, such as slight water movement or sensor inaccuracies. The system disregards any rotational speed within this range, preventing unnecessary thruster adjustments. It ensures that the system only responds to significant rotational changes.
-- **Out of Bounds Level**: This is the maximum allowable rotational speed of the ROV. If the detected rotational speed exceeds this threshold, the system halts operations to prevent damage or instability. This is typically set high enough to catch extreme external forces or malfunctions.
+- **Tolerance Level**: This parameter accounts for natural noise in the underwater environment, such as sensor inaccuracies. The system ignores any rotational speed within this range, preventing unnecessary thruster adjustments and ensuring that it only responds to significant rotational changes.
+- **Out of Bounds Level**: This parameter defines the maximum safe rotational speed for the ROV. If the detected speed exceeds this limit, the system halts operations to prevent damage or instability. The threshold is usually set high enough to account for extreme external forces or malfunctions.
 - **Output Amplifier**: This parameter scales the corrective output signals sent to the thrusters. It allows the system to fine-tune the magnitude of thruster response based on the degree of detected rotation.
 
 ---
