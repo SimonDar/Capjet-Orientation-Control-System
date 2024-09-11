@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Capjet-Orientation-Control-System** is designed to maintain the orientation of a Remotely Operated Vehicle (ROV) in a stable and stationary position underwater. The system uses gyroscopic feedback to monitor the ROV’s rotational speeds in both the **RightLeft/Y** and **FrontBack/X** axes. Once activated, the system compensates for any unintentional movements by adjusting thrusters in real-time, ensuring that the ROV remains still, even in the presence of external forces like currents.
+The **Capjet-Orientation-Control-System** is designed to maintain the orientation of the ROV in a stable and stationary position underwater. The system uses gyroscopic feedback to monitor the ROV’s rotational speeds in both the **RightLeft/Y** and **FrontBack/X** axes. Once activated, the system compensates for any unintentional movements by adjusting thrusters in real-time, ensuring that the ROV remains still, even in the presence of external forces like currents.
 
 ### Flowchart Representation
 
