@@ -14,7 +14,7 @@ The following flowchart illustrates the logical flow of the **Capjet-Orientation
 1. The system starts by checking the gyroscope for any rotational movement.
 2. If the detected rotation is within an acceptable range (based on the **Tolerance Level**), no action is taken.
 3. If the rotation is beyond the acceptable range but still within safe limits, the system sends signals to the thrusters to correct the orientation.
-4. If the detected rotation exceeds the **Out of Bounds** safe limits, the system stops automatically.
+4. If the detected rotation exceeds the **Out of Bounds** safety limits, the system stops automatically.
 5. The system can also be stopped manually at any point.
 
 ---
