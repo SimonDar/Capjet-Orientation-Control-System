@@ -64,7 +64,7 @@ The following image shows the LabVIEW Front Panel for controlling the system:
 
 ### Indicators
 
-- **Thruster Gauges** These gauges (Front Left, Front Right, Back Left, Back Right) display the power being applied to each thruster. They adjust in real time based on the rotation data and the amplifier settings.
+- **Thruster Gauges**: These gauges (Front Left, Front Right, Back Left, Back Right) display the power being applied to each thruster. They adjust in real time based on the rotation data and the amplifier settings.
 - **Out of Bounds Indicator**: A light that turns on when the ROV’s rotational speed exceeds the **Out of Bounds** safety limit.
 - **Stop Button**:  A button that allows the operator to stop the system manually at any time.
 
