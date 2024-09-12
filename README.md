@@ -54,9 +54,13 @@ The following image shows the LabVIEW Front Panel for controlling the system:
 ### Controls
 
 - **RightLeft/Y Rotation** and **FrontBack/X Rotation**: These numeric inputs measure the ROV’s rotational speed in degrees per second. The values come from the gyroscope or can be entered manually for testing.
-- **Tolerance Level**: This defines the threshold for ignoring small, insignificant rotations. Rotations below this value won’t trigger any thruster adjustments.
-- **Out of Bounds Level**: The maximum allowed rotational speed. If the ROV rotates faster than this limit, the system shuts down to prevent further movement or damage.
-- **Output Amplifier**: This amplifies signals sent to the thrusters, allowing the system to control how much power is applied to each thruster based on the detected rotation.
+
+
+- **Tolerance Level**: This is a setting that tells the system to ignore small rotations. If the rotation is below this value, no thruster adjustments are made. It's used to filter out tiny, unimportant movements.
+
+- **Out of Bounds Level**: This sets the maximum safe rotation speed. If the ROV spins faster than this limit, the system shuts down to avoid damage. It's meant to catch extreme situations or malfunctions.
+
+- **Output Amplifier**: This setting controls how much power is sent to the thrusters. It increases the thruster response based on how much rotation is detected, helping to fine-tune the ROV's movement. 
 
 ### Indicators
 
