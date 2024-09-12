@@ -14,7 +14,7 @@ The following flowchart illustrates the logical flow of the **Capjet-Orientation
 1. The system starts by checking the gyroscope for any rotational movement.
 2. If the detected rotation is within an acceptable range (based on the **Tolerance Level**), no action is taken.
 3. If the rotation is beyond the acceptable range but still within safe limits, the system sends signals to the thrusters to correct the orientation.
-4. If the detected orientation exceeds the **Out of Bounds** level, the system stops automatically.
+4. If the detected rotation exceeds the **Out of Bounds** safe limits, the system stops automatically.
 5. The system can also be stopped manually at any point.
 
 ---
@@ -40,7 +40,7 @@ These signals are shown on the front panel as Thruster Gauges, reflecting the re
 ### Threshold Parameters
 
 - **Tolerance Level**: This setting allows the system to ignore small rotations caused by natural noise or sensor inaccuracies.
-- **Out of Bounds Level**: This sets the highest allowable rotational speed. If the rotation speed exceeds this limit, the system shuts down to prevent damage or instability. 
+- **Out of Bounds Level**: This sets the highest allowable rotational speed. If the rotation speed exceeds this limit, the system shuts down the **Orientation-Control-System** to prevent damage or instability. 
 - **Output Amplifier**: This amplifies signals sent to the thrusters, allowing the system to control how much power is applied to each thruster based on the detected rotation.
 
 ---
@@ -56,16 +56,16 @@ The following image shows the LabVIEW Front Panel for controlling the system:
 - **RightLeft/Y Rotation** and **FrontBack/X Rotation**: These numeric inputs measure the ROV’s rotational speed in degrees per second. The values come from the gyroscope or can be entered manually for testing.
 
 
-- **Tolerance Level**: This is a setting that tells the system to ignore small rotations. If the rotation is below this value, no thruster adjustments are made. It's used to filter out tiny, unimportant movements.
+- **Tolerance Level**: This variable setting defines the threshold below which the system will not make any thruster adjustments. If the rotation is below this value, no adjustments are made to the thrusters, allowing the system to ignore minor, insignificant movements.
 
-- **Out of Bounds Level**: This sets the maximum safe rotation speed. If the ROV spins faster than this limit, the system shuts down to avoid damage. It's meant to catch extreme situations or malfunctions.
+- **Out of Bounds Level**: This variable setting defines the maximum allowable rotation speed. If the ROV's rotation exceeds this limit, the **Orientation-Control-System** automatically shuts down to prevent damage. This setting is intended to handle extreme situations or malfunctions.
 
 - **Output Amplifier**: This setting controls how much power is sent to the thrusters. It increases the thruster response based on how much rotation is detected, helping to fine-tune the ROV's movement. 
 
 ### Indicators
 
 - **Thruster Gauges** These gauges (Front Left, Front Right, Back Left, Back Right) display the power being applied to each thruster. They adjust in real time based on the rotation data and the amplifier settings.
-- **Out of Bounds Indicator**: A light that turns on when the ROV’s rotational speed exceeds the **Out of Bounds** limit.
+- **Out of Bounds Indicator**: A light that turns on when the ROV’s rotational speed exceeds the **Out of Bounds** safety limit.
 - **Stop Button**:  A button that allows the operator to stop the system manually at any time.
 
 
@@ -80,7 +80,7 @@ The following image shows the Block Diagram in LabVIEW for the system's logic:
 
 ### Input Processing
 
-- The system processes the **RightLeft/Y Rotation** and **FrontBack/X Rotation** values by comparing them to the **Tolerance Level**. If the rotations are above the tolerance level, the system activates the thrusters to compensate.
+- The system processes the **RightLeft/Y Rotation** and **FrontBack/X Rotation** values by comparing them to the **Tolerance Level**. If the rotations are above the tolerance level, The system activates the thrusters to correct the rotation.
 
 ### Compensation Logic
 
@@ -97,4 +97,4 @@ The following image shows the Block Diagram in LabVIEW for the system's logic:
 
 ### Stop Logic
 
-- The **Stop Button** allows the operator to stop the system at any time. The button works through an OR gate, ensuring the system stops either manually or when the **Out of Bounds** condition is met.
+- The **Stop Button** allows the operator to stop the system at any time. The button works through an OR gate, ensuring the system stops either manually or when the rotation exceeds the **Out of Bounds** safety limit.
