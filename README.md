@@ -81,7 +81,7 @@ The following image shows the Block Diagram in LabVIEW for the system's logic:
 ### Input Processing
 
 - The system processes the **RightLeft/Y Rotation** and **FrontBack/X Rotation** values by comparing them to the **Tolerance Level**. 
-- 
+
 ### Compensation Logic
 
 - For both the X and Y axes:
