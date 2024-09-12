@@ -1,7 +1,7 @@
 # Capjet-Orientation-Control-System Documentation
 
 > [!NOTE]
-> > For a concise overview of the functions, please refer back to the [README-SHORT](./README.md).
+> For a concise overview of the functions, please refer back to the [README-SHORT](./README.md).
 
 ## Overview
 
