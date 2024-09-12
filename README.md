@@ -1,100 +1,86 @@
 # Capjet-Orientation-Control-System Documentation
 
+> [!IMPORTANT]
+> This is a short summary of the functions. For a more in-depth explanation, check out [README-LONG](./README-LONG.md).
+
 ## Overview
 
-The **Capjet-Orientation-Control-System** is designed to maintain the orientation of the ROV in a stable and stationary position underwater. The system uses a gyroscope to monitor the ROV’s rotational speeds in both the **RightLeft/Y** and **FrontBack/X** axes. Once activated, the system compensates for any unintentional movements by adjusting thrusters in real-time, ensuring that the ROV remains still, even when faced with external forces like water currents.
+The **Capjet-Orientation-Control-System** stabilizes the ROV underwater by monitoring its rotation with a gyroscope. It adjusts thrusters in real-time to correct unintended movements caused by external forces like currents.
 
-### Flowchart Representation
+### Flowchart
 
-The following flowchart illustrates the logical flow of the **Capjet-Orientation-Control-System**:
+The system operates as follows:
 
 <img src="./img/FlowChart.png" alt="Flowchart" width="400"/>
 
-
-1. The system starts by checking the gyroscope for any rotational movement.
-2. If the detected rotation is within an acceptable range (based on the **Tolerance Level**), no action is taken.
-3. If the rotation is beyond the acceptable range but still within safe limits, the system sends signals to the thrusters to correct the orientation.
-4. If the detected rotation exceeds the **Out of Bounds** safety limits, the system stops automatically.
-5. The system can also be stopped manually at any point.
+1. Checks gyroscope for rotational movement.
+2. If within **Tolerance Level**, no action is taken.
+3. If rotation exceeds tolerance but is safe, adjusts thrusters.
+4. If rotation exceeds **Out of Bounds** level, system shuts down automatically.
+5. Manual stop is always available.
 
 ---
 
 ## Inputs
 
-- **Gyroscope Rotations**: These inputs measure how fast the ROV rotates in **degrees per second** using two axes:
-  - **RightLeft/Y Rotation**: Measures the rotation from left to right along the Y-axis.
-  - **FrontBack/X Rotation**: Measures the rotation from front to back along the X-axis.
+- **Gyroscope Rotations**: Measures rotation in **degrees per second**:
+  - **RightLeft/Y Rotation**: Left-to-right rotation along the Y-axis.
+  - **FrontBack/X Rotation**: Front-to-back rotation along the X-axis.
 
-For testing purposes, you can manually input values to simulate gyroscope readings for the X and Y axes. This helps observe how the system responds to different rotation speeds without needing an actual gyroscope.
+For testing, you can manually input rotation values.
 
 ## Outputs
 
-- **Thruster Signals**: The system generates four output signals, each controlling one of the ROV’s thrusters:
-  - Front Left Thruster.
-  - Front Right Thruster.
-  - Back Left Thruster.
-  - Back Right Thruster.
+- **Thruster Signals**: Four output signals control:
+  - Front Left, Front Right, Back Left, and Back Right thrusters.
 
-These signals are shown on the front panel as Thruster Gauges, reflecting the real-time adjustments based on the gyroscope data. The signals connect to the thrusters to provide corrective actions and stabilize the ROV.
+These signals are shown on Thruster Gauges on the front panel and adjust in real-time.
 
 ### Threshold Parameters
 
-- **Tolerance Level**: This setting allows the system to ignore small rotations caused by natural noise or sensor inaccuracies.
-- **Out of Bounds Level**: This sets the highest allowable rotational speed. If the rotation speed exceeds this limit, the system shuts down the **Orientation-Control-System** to prevent damage or instability. 
-- **Output Amplifier**: This amplifies signals sent to the thrusters, allowing the system to control how much power is applied to each thruster based on the detected rotation.
+- **Tolerance Level**: Threshold for ignoring minor rotations.
+- **Out of Bounds Level**: Maximum allowable rotation speed. Exceeding this shuts down the system.
+- **Output Amplifier**: Controls the power sent to the thrusters based on detected rotation.
 
 ---
 
 ## Front Panel Elements
 
-The following image shows the LabVIEW Front Panel for controlling the system:
-
 <img src="./img/labViewPanel.png" alt="labViewPanel" width="550"/>
 
 ### Controls
 
-- **RightLeft/Y Rotation** and **FrontBack/X Rotation**: These numeric inputs measure the ROV’s rotational speed in degrees per second. The values come from the gyroscope or can be entered manually for testing.
-
-
-- **Tolerance Level**: This variable setting defines the threshold below which the system will not make any thruster adjustments. If the rotation is below this value, no adjustments are made to the thrusters, allowing the system to ignore minor, insignificant movements.
-
-- **Out of Bounds Level**: This variable setting defines the maximum allowable rotation speed. If the ROV's rotation exceeds this limit, the **Orientation-Control-System** automatically shuts down to prevent damage. This setting is intended to handle extreme situations or malfunctions.
-
-- **Output Amplifier**: This setting controls how much power is sent to the thrusters. It increases the thruster response based on how much rotation is detected, helping to fine-tune the ROV's movement. 
+- **Rotation Inputs**: Measure rotation from gyroscope or can be manually entered for testing.
+- **Tolerance Level**: Ignores small rotations below this threshold.
+- **Out of Bounds Level**: Maximum safe rotation speed; system shuts down if exceeded.
+- **Output Amplifier**: Adjusts thruster power for precise control.
 
 ### Indicators
 
-- **Thruster Gauges**: These gauges (Front Left, Front Right, Back Left, Back Right) display the power being applied to each thruster. They adjust in real time based on the rotation data and the amplifier settings.
-- **Out of Bounds Indicator**: A light that turns on when the ROV’s rotational speed exceeds the **Out of Bounds** safety limit.
-- **Stop Button**:  A button that allows the operator to stop the system manually at any time.
-
-
+- **Thruster Gauges**: Display real-time power applied to each thruster.
+- **Out of Bounds Indicator**: Lights up if rotation speed is unsafe.
+- **Stop Button**: Allows manual stopping of the system.
 
 ---
 
 ## Block Diagram Breakdown
 
-The following image shows the Block Diagram in LabVIEW for the system's logic:
-
 <img src="./img/labViewBlockDiagram.png" alt="labViewBlockDiagram" width="550"/>
 
 ### Input Processing
 
-- The system processes the **RightLeft/Y Rotation** and **FrontBack/X Rotation** values by comparing them to the **Tolerance Level**. 
+- Compares Y and X axis rotations to the **Tolerance Level**. Activates thrusters if the rotation exceeds this value.
 
 ### Compensation Logic
 
-- For both the X and Y axes:
-  - If the rotation exceeds the tolerance level, the system sends correction signals to the appropriate thrusters to reduce the rotation.
-  - The **Output Amplifier** controls how strong these signals are, adjusting the power of the thrusters based on the amount of rotation detected.
-  - **Multipliers** adjust the compensation applied to each thruster (Front Left, Front Right, Back Left, and Back Right) to return the ROV to a stable position.
+- Sends correction signals to thrusters if rotation is above tolerance.
+- **Output Amplifier** adjusts signal strength and thruster power.
+- **Multipliers** ensure proper compensation to stabilize the ROV.
 
 ### Out of Bounds Detection
 
-- If the rotational speed exceeds the **Out of Bounds Level**, the system will:
-  - Light up the **Out of Bounds Indicator**.
-  - Automatically stop the system to prevent instability.
+- Activates **Out of Bounds Indicator** and shuts down the system if rotation exceeds the **Out of Bounds Level**.
 
 ### Stop Logic
 
-- The **Stop Button** allows the operator to stop the system at any time. The button works through an OR gate, ensuring the system stops either manually or when the rotation exceeds the **Out of Bounds** safety limit.
+- **Stop Button** stops the system manually or when the **Out of Bounds** condition occurs.
